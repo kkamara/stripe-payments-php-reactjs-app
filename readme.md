@@ -4,7 +4,7 @@
 
 # Stripe Payments PHP Reactjs App
 
-(29-Nov-2023) A Laravel 10.x app.
+(29-Nov-2023) A Laravel 10.x Reactjs app.
 
 * [Using Thunder Client?](#using-thunder-client)
 
