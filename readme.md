@@ -2,7 +2,7 @@
 
 <img src="https://github.com/kkamara/useful/blob/main/php-reactjs-boilerplate2.png?raw=true" alt="php-reactjs-boilerplate2.png" width=""/>
 
-# Stripe Payments PHP Reactjs App
+# Stripe Payments PHP Reactjs App [![Tests Pipeline](https://github.com/kkamara/stripe-payments-php-reactjs-app/actions/workflows/build.yml/badge.svg)](https://github.com/kkamara/stripe-payments-php-reactjs-app/actions/workflows/build.yml)
 
 (29-Nov-2023) A Laravel 10.x Reactjs app.
 
