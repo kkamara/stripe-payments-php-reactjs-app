@@ -18,16 +18,8 @@ export default function HomeComponent() {
   }))
 
   useEffect(() => {
-    dispatch(authorize())
     dispatch(getUsers())
   }, [])
-
-  useEffect(() => {
-    if (state.auth.error) {
-      localStorage.removeItem('user-token')
-      window.location.href = '/user/login'
-    }
-  }, [state.auth,])
 
   const handlePageChange = ({ selected, }) => {
     const newPage = selected + 1
@@ -48,7 +40,7 @@ export default function HomeComponent() {
         <ul className="list-group">
           {state.users.data.data.map((user, index) => (
             <li key={index} className='list-group-item home-item'>
-              <strong>name</strong> ({user.first_name} {user.last_name}), 
+              <strong>name</strong> ({user.first_name} {user.last_name}),
               <strong>email</strong> ({user.email}),
               <strong>created_at</strong> ({parseDate(user.created_at)}),
               <strong>updated_at</strong> ({parseDate(user.updated_at)})
@@ -109,6 +101,6 @@ export default function HomeComponent() {
             />
           </> : null}
       </div>
-    </>       
+    </>
   )
 }
