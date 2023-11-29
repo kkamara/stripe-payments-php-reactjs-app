@@ -1,27 +1,27 @@
 import React from 'react'
 import { useSelector, } from 'react-redux'
 
-export default function Header(props) {  
+export default function Header(props) {
   const authResponse = useSelector(state=>state.auth)
 
   const renderNavLinks = () => {
     if(authResponse.data) {
-      return <a 
-        className="dropdown-item" 
+      return <a
+        className="dropdown-item"
         href="/user/logout"
       >
         Logout
       </a>
     } else {
         return <>
-          <a 
-            className="dropdown-item" 
+          <a
+            className="dropdown-item"
             href="/user/login"
           >
             Login
           </a>
-          <a 
-            className="dropdown-item" 
+          <a
+            className="dropdown-item"
             href="/user/register"
           >
             Register
@@ -33,7 +33,7 @@ export default function Header(props) {
   console.log(import.meta.env)
   return <nav className="container navbar navbar-expand-lg bg-body-tertiary">
     <div className="container-fluid">
-      <a className="navbar-brand" href="/">PHP Reactjs Boilerplate</a>
+      <a className="navbar-brand" href="/">Stripe Payments PHP Reactjs App</a>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
@@ -49,7 +49,7 @@ export default function Header(props) {
               User
             </a>
             <ul className="dropdown-menu">
-              <li>{renderNavLinks()}</li>              
+              <li>{renderNavLinks()}</li>
             </ul>
           </li>
         </ul>

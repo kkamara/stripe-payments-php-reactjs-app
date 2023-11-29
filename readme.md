@@ -2,9 +2,9 @@
 
 <img src="https://github.com/kkamara/useful/blob/main/php-reactjs-boilerplate2.png?raw=true" alt="php-reactjs-boilerplate2.png" width=""/>
 
-# PHP Reactjs Boilerplate [![API](https://github.com/kkamara/php-reactjs-boilerplate/actions/workflows/build.yml/badge.svg)](https://github.com/kkamara/php-reactjs-boilerplate/actions/workflows/build.yml)
+# Stripe Payments PHP Reactjs App
 
-(2021) A GDPR compliant Laravel 10.x boilerplate with Redux.
+(29-Nov-2023) A Laravel 10.x app.
 
 * [Using Thunder Client?](#using-thunder-client)
 
