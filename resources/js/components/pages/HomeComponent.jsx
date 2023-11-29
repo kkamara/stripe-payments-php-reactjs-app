@@ -1,106 +1,52 @@
-import React, { useEffect, } from 'react'
-import { useNavigate, } from 'react-router-dom'
-import { useDispatch, useSelector, } from 'react-redux'
-import ReactPaginate from 'react-paginate'
-import moment from 'moment'
-import { getUsers, } from '../../redux/actions/usersActions'
-import { authorize } from '../../redux/actions/authActions'
+import React, { useState, useEffect } from "react";
 
-import "./HomeComponent.scss"
+const ProductDisplay = () => (
+  <section>
+    <div className="product">
+      <img
+        src="https://i.imgur.com/EHyR2nP.png"
+        alt="The cover of Stubborn Attachments"
+      />
+      <div className="description">
+      <h3>A Sample</h3>
+      <h5>£5.00</h5>
+      </div>
+    </div>
+    <form action="/checkout" method="POST">
+      <button type="submit">
+        Checkout
+      </button>
+    </form>
+  </section>
+);
 
-export default function HomeComponent() {
-  const navigate = useNavigate()
+const Message = ({ message }) => (
+  <section>
+    <p>{message}</p>
+  </section>
+);
 
-  const dispatch = useDispatch()
-  const state = useSelector(state => ({
-    auth: state.auth,
-    users: state.users,
-  }))
+export default function App() {
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
-    dispatch(getUsers())
-  }, [])
+    // Check to see if this is a redirect back from Checkout
+    const query = new URLSearchParams(window.location.search);
 
-  const handlePageChange = ({ selected, }) => {
-    const newPage = selected + 1
-    if (selected > state.users.data.last_page) {
-      return
+    if (query.get("success")) {
+      setMessage("Order placed! You will receive an email confirmation.");
     }
-    dispatch(getUsers(newPage))
-  }
 
-  const parseDate = date => moment(date).format('YYYY-MM-DD hh:mm')
-
-  const renderList = () => {
-    if (!state.users.data) {
-      return null
+    if (query.get("canceled")) {
+      setMessage(
+        "Order canceled -- continue to shop around and checkout when you're ready."
+      );
     }
-    return (
-      <>
-        <ul className="list-group">
-          {state.users.data.data.map((user, index) => (
-            <li key={index} className='list-group-item home-item'>
-              <strong>name</strong> ({user.first_name} {user.last_name}),
-              <strong>email</strong> ({user.email}),
-              <strong>created_at</strong> ({parseDate(user.created_at)}),
-              <strong>updated_at</strong> ({parseDate(user.updated_at)})
-            </li>
-          ))}
-        </ul>
-        <strong>page</strong> ({state.users.data.current_page}),
-        <strong>page_count</strong> ({state.users.data.last_page}),
-        <strong>displayed_items</strong> ({state.users.data.data.length}),
-        <strong>items</strong> ({state.users.data.total})
-      </>
-    )
-  }
+  }, []);
 
-  if (!state.auth.loading && typeof state.auth.data === 'object' && null !== state.auth.data) {
-    console.log('authenticated', state.auth.data)
-  }
-  if (!state.users.loading && typeof state.users.data === 'object' && null !== state.users.data) {
-    console.log('users', state.users.data)
-  }
-  if (state.auth.loading || state.users.loading) {
-    return <p>Loading...</p>
-  }
-
-  return (
-    <>
-      <div className='container'>
-        <br />
-        <br />
-        {renderList()}
-        <br />
-        <br />
-        <button className='btn btn-primary'>
-          Test button
-        </button>
-        {state.users.data ?
-          <>
-            <br />
-            <ReactPaginate
-              onPageChange={handlePageChange}
-              previousLabel="Previous"
-              nextLabel="Next"
-              pageClassName="page-item"
-              pageLinkClassName="page-link"
-              previousClassName="page-item"
-              previousLinkClassName="page-link"
-              nextClassName="page-item"
-              nextLinkClassName="page-link"
-              breakLabel="..."
-              breakClassName="page-item"
-              breakLinkClassName="page-link"
-              pageCount={state.users.data.last_page}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={5}
-              containerClassName="pagination"
-              activeClassName="active"
-              forcePage={state.users.data.current_page - 1}
-            />
-          </> : null}
-      </div>
-    </>
-  )
+  return message ? (
+    <Message message={message} />
+  ) : (
+    <ProductDisplay />
+  );
 }

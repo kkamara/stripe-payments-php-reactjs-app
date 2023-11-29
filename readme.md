@@ -4,7 +4,7 @@
 
 # Stripe Payments PHP Reactjs App [![Tests Pipeline](https://github.com/kkamara/stripe-payments-php-reactjs-app/actions/workflows/build.yml/badge.svg)](https://github.com/kkamara/stripe-payments-php-reactjs-app/actions/workflows/build.yml)
 
-(29-Nov-2023) A Laravel 10.x Reactjs app.
+(29-Nov-2023) In Stripe test mode buy a sample product at £5.00. A Laravel 10.x Reactjs app.
 
 * [Using Thunder Client?](#using-thunder-client)
 

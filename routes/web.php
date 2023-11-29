@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\CheckoutController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 use App\Mail\Test as TestMail;
@@ -27,10 +28,12 @@ Route::get('/job', function() {
 
 Route::get('/email', function () {
     Log::debug('test');
-    
+
     $email = new TestMail();
     Mail::to('recipient@localhost')->send($email);
     return $email;
 });
 
 Route::view('/{path?}', 'layouts.app')->where('path', '.*');
+
+Route::post('/checkout', [CheckoutController::class, "checkout"])->name('checkout');
